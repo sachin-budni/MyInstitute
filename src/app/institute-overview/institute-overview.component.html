@@ -1,0 +1,151 @@
+<div class="overview" (cdkDropListDropped)="drop($event)" cdkDropList>
+    <div *ngFor="let item of getHeader.controls; let pointIndex=index" cdkDrag>
+        <div class="header-card" (click)="selectedValue = pointIndex">
+            <div class="header">
+                <p>{{item.controls["headerName"].value}}</p>
+            </div>
+            <div class="overview-desc">
+                <p>{{item.controls["description"].value}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="maindiv">
+    <div class="addform" fxLayout="row" fxLayoutAlign="center">
+        <img src="assets/plus.png" alt="" class="addformimg" (click)="addform()">
+    </div>
+
+    <div class="header-form">
+        <form [formGroup]="overviewForm" (ngSubmit)="onSubmit(overviewForm.value)">
+            <div formArrayName="header">
+                <div *ngFor="let item of getHeader.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                    <div *ngIf="selectedValue == pointIndex">
+                        <mat-form-field appearance="outline" class="header-form">
+                            <input matInput formControlName="headerName" placeholder="Header Name" />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="header-form">
+                            <input matInput formControlName="description" placeholder="Description" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    {{overviewForm.value | json}}
+
+</div>
+<div class="padding-20"></div>
+<div class="course">
+    <div class="header">
+        Course
+    </div>
+    <div class="addform" fxLayout="row" fxLayoutAlign="center">
+        <img src="assets/plus.png" alt="" class="addformimg" (click)="openCourseDialog()">
+    </div>
+    <div>
+        <div class="courses-cards">
+            <div *ngFor="let course of getCourses.value" class="course-card">
+                <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+                    <p class="haederName">{{course.headerName}}</p>
+                    <span fxFlex></span>
+                    <p class="subhead">{{course.hours}} Hours</p>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" class="skill" fxLayoutGap="20px">
+                    <p>Skills :</p>
+                    <div>
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let skill of course.skills">{{skill}}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <div class="desc-data">
+                    <p>
+                        {{course.description}}
+                    </p>
+                </div>
+                <div fxLayoutGap="10px" class="location">
+                    <img src="assets/location.svg" alt="location">
+                    <p>{{course.location}}</p>
+                    <div fxFlex></div>
+                    <button class="butoons">Course Detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-20"></div>
+    <!-- JOBs -->
+<div class="jobs">
+    <div class="header">
+        Jobs
+    </div>
+    <div class="addform" fxLayout="row" fxLayoutAlign="center">
+        <img src="assets/plus.png" alt="" class="addformimg" (click)="openJobDialog()">
+    </div>
+    <div class="jobs-cards">
+        <div *ngFor="let job of getJobs.value" class="cards">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+                <p class="haederName">{{job.headerName}}</p>
+                <p class="subhead">{{job.experience}} year Experience</p>
+                <p class="subhead">{{job.salary}}</p>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="skill" fxLayoutGap="20px">
+                <p>Skills :</p>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let skill of job.skills">{{skill}}</mat-chip>
+                </mat-chip-list>
+            </div>
+            <div class="desc-data">
+                <p>{{job.description}}</p>
+            </div>
+            <div fxLayoutGap="10px" class="location">
+                <img src="assets/location.svg" alt="location">
+                <p>{{job.location}}</p>
+                <div fxFlex></div>
+                <button class="butoons">See Detail</button>
+            </div>
+        </div>
+    </div>
+    <div fxLayoutAlign="center" style="width: 90%">
+        <button class="butoons size-btn">more ...</button>
+    </div>
+</div>
+
+
+<div class="padding-20"></div>
+    <!-- JOBs -->
+    <div class="jobs">
+        <div class="header">
+            Reviews
+        </div>
+        <div class="addform" fxLayout="row" fxLayoutAlign="center">
+            <img src="assets/plus.png" alt="" class="addformimg" (click)="openReviewDialog()">
+        </div>
+        <div class="jobs-cards">
+            <div *ngFor="let review of getReview.value" class="cards">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+                    <p class="haederName">{{review.headerName}}</p>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" class="skill" fxLayoutGap="20px">
+                    <p>Skills :</p>
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let skill of review.skills">{{skill}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div class="desc-data">
+                    <p>{{review.description}}</p>
+                </div>
+                <div fxLayoutGap="10px" class="location">
+                    <!-- <img [src]="review.candidateImage" alt="location"> -->
+                    <p>{{review.candidateName}}</p>
+                    <div fxFlex></div>
+                    <button class="butoons">Candidate profile</button>
+                </div>
+            </div>
+        </div>
+    </div>

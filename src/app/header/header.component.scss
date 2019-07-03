@@ -1,0 +1,46 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .header{
+      color: white;
+      font-family: 'Comfortaa',bold;
+      font-size: 22px;
+  }
+  .options{
+      font-size: 16px;
+      font-weight: normal;
+      font-family: "Roboto",Regular;
+  }
+  .profile-dropdown{
+      font-family: 'Source Sans Pro',Regular;
+      font-size: 12px;
+      width: 140px;
+  }
+  .mat-form-field{
+      width: 130px;
+  }
+.profile-image{
+    width: 35px;
+    height: 35px;
+    border-radius:20px; 
+    border:1px solid #ffffff;
+}
+.notification-icon{
+    padding: 0 10px;
+    font-size: 20px !important;
+}
+
+.mat-toolbar{
+    background-color:#373A37; 
+}
+
+.active-link{
+    // text-decoration: underline white !important;
+    border-bottom: 2px solid white;
+    border-block-start: #373A37;
+}

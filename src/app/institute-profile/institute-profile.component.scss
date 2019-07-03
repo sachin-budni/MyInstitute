@@ -1,0 +1,75 @@
+.mat-toolbar{
+    background-color:#ffffff; 
+    border-bottom: 1px solid black;
+    font-family: "Roboto",Medium;
+}
+// --------------------------------
+
+.profile{
+    width: 100%;
+}
+.profile-Side{
+    width: 300px;
+    margin-left: 5%;
+
+}
+.profile-image{
+    width: 200px;
+    margin: 0px auto;
+}
+
+.profile-header-name{
+    text-align: center;
+    font-family: "Roboto",Regular;
+    font-size: 20px;
+    padding: 0 8%;
+}
+.mat-chip.mat-standard-chip{
+    background-color: #ECECEC;
+    font-family: "Roboto",Regular;
+    font-size: 12px;
+}
+
+//--------------------------------------
+
+.enquiry-form{
+    margin: 10px;
+}
+
+.header{
+    font-size: 20px;
+    font-family: "Comfortaa",Regular;
+}
+
+.subheader{
+    font-size: 15px;
+    font-family: "Roboto",Regular;
+}
+
+.enquiry-headerbar{
+    background-color: #BEFFA1;
+    border-radius: 10px;
+    padding: 10px;
+}
+.form-field{
+    width: 100%;
+}
+.enquiry-submit button:first-child{
+    border: none;
+    background-color: #FF6484;
+    height: 35px;
+    font-size: 15px;
+    width: 90px;
+    color: white;
+    font-family: "Roboto", Medium;
+    border-radius: 10px;
+}
+
+.btn{
+    border:none;
+    background: none;
+}
+
+.institute-overview{
+    width: calc(100% - 400px);
+}

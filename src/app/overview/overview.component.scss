@@ -1,0 +1,75 @@
+.header{
+    width: 100%;
+    font-size: 26px ;
+    font-family: "Roboto",Regular;
+}
+
+.overview-desc{
+    width: 85%;
+    font-size: 20px;
+    font-family: "Roboto",Regular;
+}
+
+//--------------------------------
+
+.courses-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 90%;
+}
+
+.course-card{
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 20px;
+    width: 100%;
+    background-color: #FCFCFC;
+    margin: 20px 0px;
+}
+.haederName{
+    font-family: "Comfortaa",Bold;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.subhead{
+    font-family: "Roboto",Regular;
+    font-size: 14px;
+}
+.desc-data{
+    font-size: 14px;
+    font-family: "Roboto",Regular;
+    color: #00000075;
+    width: 95%;
+}
+
+.skill p:first-child{
+    font-size: 14px;
+    font-family: "Comfortaa",Bold;
+    font-weight: bold;
+}
+.location p:nth-child(2){
+    font-family: "Roboto", Regular;
+    font-size: 14px;
+}
+.butoons{
+    font-size: 12px;
+    background-color: #ECECEC;
+    border: none;
+    height: 30px;
+    font-family: "Roboto", Regular;
+    border-radius: 8px;
+}
+.size-btn{
+    width: 100px
+}
+
+.jobs-cards{
+    width: 90%;
+}
+.cards{
+    padding: 20px;
+    background-color: #FCFCFC;
+    margin: 20px 0px;
+}

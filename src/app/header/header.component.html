@@ -1,0 +1,33 @@
+<mat-toolbar class="header">
+    <mat-toolbar-row>
+        <span fxFlex="20" fxFlex.xs="0">Jobs.in</span>
+        <div class="options" fxLayoutGap="30px"   fxHide.xs>
+            <span>Jobs</span>
+            <span routerLinkActive="active-link" routerLink="">For Candidate</span>
+            <span routerLinkActive="active-link" routerLink="institute">For Institute</span>
+        </div>
+        <span class="example-spacer"></span>
+        <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="3px">
+            <mat-icon class="notification-icon">notifications</mat-icon>
+            <img class="profile-image"
+                src="https://scontent.fblr3-2.fna.fbcdn.net/v/t1.0-9/28279696_1979202875630573_7540694492155177420_n.jpg?_nc_cat=106&_nc_oc=AQmSb6d-RvIpam3ynfNBeT7GF0Zvz2cfxN93B_JXfMb15mTLDdLW9s8VJIHb0kIlhn8&_nc_ht=scontent.fblr3-2.fna&oh=64552e371024df701eca99d6dedaf9f8&oe=5DC2DB69"
+                alt="profile">
+            <div class="profile-dropdown" fxHide.md  fxHide.xs>
+                <button mat-button [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxLayoutGap.xs="3px" ><span>Sachin Budni</span><mat-icon color="white">arrow_drop_down</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngFor="let dropdown of profileDropdown">{{dropdown.name}}</button>
+                </mat-menu>
+                <!-- <mat-form-field>
+                    <mat-label>Sachin Budni</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let dropdown of profileDropdown" [value]="dropdown.value">
+                            {{dropdown.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+            </div>
+        </div>
+
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">settings</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
