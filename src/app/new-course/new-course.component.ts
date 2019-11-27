@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 class OverViewForm{
   formGroup1:FormGroup;
@@ -14,7 +14,8 @@ class OverViewForm{
 export class NewCourseComponent implements OnInit {
   overviewForm:FormGroup;
   selectIndex:number = 0;
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  titleAlert:string = "Field is Required";
+  toppingList: string[] = ['Advance Excel', 'VBA', 'SQL', 'Tally'];
   constructor(public dialogRef: MatDialogRef<NewCourseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder) {
       
@@ -26,18 +27,21 @@ export class NewCourseComponent implements OnInit {
     
   ngOnInit() {
     this.getCourse.insert(this.selectIndex,this.fb.group({
-      headerName:[""],
-      hours:[""],
-      skills:[""],
-      description:[''],
-      location:[""]
+      headerName:["",[Validators.required,Validators.minLength(3)]],
+      hours:["",[Validators.required,Validators.minLength(3)]],
+      skills:["",[Validators.required]],
+      description:['',[Validators.required,Validators.minLength(10)]],
+      location:["",[Validators.required,Validators.minLength(3)]]
     }))
   }
 
   get getCourse(){
     return this.overviewForm.get("course") as FormArray;
   }
-
+  geterror(item){
+    console.log(item)
+    return this.titleAlert;
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }

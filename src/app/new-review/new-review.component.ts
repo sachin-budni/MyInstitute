@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -11,7 +11,8 @@ export class NewReviewComponent implements OnInit {
 
   overviewForm:FormGroup;
   selectIndex:number = 0;
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  titleAlert = "Field is Requied"
+  toppingList: string[] = ['Advanced Excel', 'VBA', 'SQL', 'Tally'];
   constructor(public dialogRef: MatDialogRef<NewReviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder) {
       this.overviewForm = this.fb.group({
@@ -21,10 +22,10 @@ export class NewReviewComponent implements OnInit {
     
   ngOnInit() {
     this.getReviews.insert(this.selectIndex,this.fb.group({
-      headerName:[""],
-      skills:[""],
-      description:[''],
-      candidateName:[""]
+      review:["",[Validators.required,Validators.minLength(3)]],
+      skills:["",[Validators.required,Validators.minLength(3)]],
+      description:['',[Validators.required,Validators.minLength(10)]],
+      candidateName:["",[Validators.required,Validators.minLength(3)]]
     }))
   }
 

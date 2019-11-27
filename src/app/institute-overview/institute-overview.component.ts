@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { NewjobComponent } from '../newjob/newjob.component';
 import { NewReviewComponent } from '../new-review/new-review.component';
+import { FormService } from '../form/form.service';
 
 @Component({
   selector: 'institute-overview',
@@ -17,13 +18,9 @@ export class InstituteOverviewComponent implements OnInit {
   headerForm:FormArray;
   courseForm:FormArray;
   selectedValue: number = 0;
-  constructor(private fb:FormBuilder,public dialog: MatDialog) { }
+  constructor(private fb:FormBuilder,public dialog: MatDialog,private formService:FormService) { }
 
   ngOnInit() {
-    // this.headerForm.push(this.fb.group({
-    //   headerName:["",[Validators.required]],
-    //   description:["",[Validators.required]]
-    // }));
     this.overviewForm = this.fb.group({
       header:this.fb.array([]),
       course:this.fb.array([]),
@@ -35,6 +32,7 @@ export class InstituteOverviewComponent implements OnInit {
       headerName:["",[Validators.required]],
       description:["",[Validators.required]]
     }))
+    // this.formService.getData();
   }
 
   get getHeader(){
@@ -54,11 +52,13 @@ export class InstituteOverviewComponent implements OnInit {
   }
 
   addform(){
-    this.selectedValue = this.getHeader.length;
-    this.getHeader.insert(this.selectedValue,this.fb.group({
-      headerName:["",[Validators.required]],
-      description:["",[Validators.required]]
-    }))
+    if(this.overviewForm.valid){
+      this.selectedValue = this.getHeader.length;
+      this.getHeader.insert(this.selectedValue,this.fb.group({
+        headerName:["",[Validators.required]],
+        description:["",[Validators.required]]
+      }))
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -113,6 +113,15 @@ export class InstituteOverviewComponent implements OnInit {
         })
       }
     })
+  }
+
+  submitted(){
+    if (this.overviewForm.valid) {
+      console.log(this.overviewForm.value);
+      this.formService.postData(this.overviewForm.value);
+    }else{
+      alert("not valid")
+    }
   }
 
 }

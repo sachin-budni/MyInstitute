@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -10,8 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class NewjobComponent implements OnInit {
 
   overviewForm:FormGroup;
+  titleAlert:string = "Field is Required";
   selectIndex:number = 0;
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = ['Advance Excel', 'VBA', 'SQL', 'Tally'];
   constructor(public dialogRef: MatDialogRef<NewjobComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder) {
       this.overviewForm = this.fb.group({
@@ -21,12 +22,12 @@ export class NewjobComponent implements OnInit {
     
   ngOnInit() {
     this.getJobs.insert(this.selectIndex,this.fb.group({
-      headerName:[""],
-      experience:[""],
-      salary:[""],
-      skills:[""],
-      description:[''],
-      location:[""]
+      position:["",[Validators.required,Validators.minLength(3)]],
+      experience:["",[Validators.required,Validators.minLength(3)]],
+      salary:["",[Validators.required,Validators.minLength(3)]],
+      skills:["",[Validators.required]],
+      description:['',[Validators.required,Validators.minLength(10)]],
+      location:["",[Validators.required,Validators.minLength(3)]]
     }))
   }
 

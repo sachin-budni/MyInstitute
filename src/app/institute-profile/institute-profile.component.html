@@ -36,50 +36,10 @@
                 </mat-chip-list>
             </div>
         </div>
-        <!-- <div style="padding: 80px"></div> -->
-        <!-- <div class="enquiry-form">
-            <div class="enquiry-headerbar">
-                <div class="header">Enquire now</div>
-                <div class="subheader">This enquiry might change your career</div>
-            </div>
-            <div>
-                <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
-                    <mat-form-field class="form-field">
-                        <input matInput placeholder="Name" formControlName="name">
-                        <mat-error *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched">
-                            {{ titleAlert }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <input matInput placeholder="Mobile No" formControlName="mobileNo">
-                        <mat-error
-                            *ngIf="!formGroup.controls['mobileNo'].valid && formGroup.controls['mobileNo'].touched">
-                            {{ titleAlert }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <input matInput placeholder="Subject" formControlName="subject">
-                        <mat-error
-                            *ngIf="!formGroup.controls['subject'].valid && formGroup.controls['subject'].touched">
-                            {{ titleAlert }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <textarea matInput placeholder="Message" formControlName="message"></textarea>
-                    </mat-form-field>
-                    <div class="enquiry-submit" fxLayoutAlign="end center">
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
+        
     </div>
     <div fxFlex="5"></div>
     <div class="institute-overview">
             <institute-overview></institute-overview>
-        <!-- <overview [courses]="courses" [jobs]="jobs" [reviews]="reviews"></overview> -->
     </div>
 </div>

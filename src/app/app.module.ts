@@ -14,6 +14,10 @@ import { InstituteOverviewComponent } from './institute-overview/institute-overv
 import { NewCourseComponent } from './new-course/new-course.component';
 import { NewjobComponent } from './newjob/newjob.component';
 import { NewReviewComponent } from './new-review/new-review.component';
+import { FormService } from './form/form.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,9 @@ import { NewReviewComponent } from './new-review/new-review.component';
     InstituteOverviewComponent,
     NewCourseComponent,
     NewjobComponent,
-    NewReviewComponent
+    NewReviewComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +38,10 @@ import { NewReviewComponent } from './new-review/new-review.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
-    ReactiveFormsModule,FormsModule
+    ReactiveFormsModule,FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [FormService],
   entryComponents:[NewCourseComponent,NewjobComponent,NewReviewComponent],
   bootstrap: [AppComponent]
 })

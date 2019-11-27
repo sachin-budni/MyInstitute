@@ -1,30 +1,36 @@
 <mat-toolbar class="header">
     <mat-toolbar-row>
+        <button mat-icon-button fxHide fxShow.xs  [matMenuTriggerFor]="menu1">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu1="matMenu">
+            <button mat-menu-item>For Candidate</button>
+            <button mat-menu-item>For Institute</button>
+        </mat-menu>
         <span fxFlex="20" fxFlex.xs="0">Jobs.in</span>
         <div class="options" fxLayoutGap="30px"   fxHide.xs>
             <span>Jobs</span>
-            <span routerLinkActive="active-link" routerLink="">For Candidate</span>
-            <span routerLinkActive="active-link" routerLink="institute">For Institute</span>
+            <button mat-button routerLink="candidate" routerLinkActive="active-link">For Candidate</button>
+            <button mat-button routerLink="institute" routerLinkActive="active-link">For Institute</button>
         </div>
         <span class="example-spacer"></span>
-        <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="3px">
+        <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.md="10px" fxLayoutGap.sm="5px" fxLayoutGap.xs="0px">
             <mat-icon class="notification-icon">notifications</mat-icon>
+            <div fxHide.xs fxHide.sm>
+                <button mat-button routerLink="login" routerLinkActive="active-link">Login</button>
+                <button mat-button routerLink="register" routerLinkActive="active-link">Register</button>
+            </div>
+            <div>
+
+            </div>
             <img class="profile-image"
-                src="https://scontent.fblr3-2.fna.fbcdn.net/v/t1.0-9/28279696_1979202875630573_7540694492155177420_n.jpg?_nc_cat=106&_nc_oc=AQmSb6d-RvIpam3ynfNBeT7GF0Zvz2cfxN93B_JXfMb15mTLDdLW9s8VJIHb0kIlhn8&_nc_ht=scontent.fblr3-2.fna&oh=64552e371024df701eca99d6dedaf9f8&oe=5DC2DB69"
+                src="https://image.shutterstock.com/image-vector/profile-placeholder-image-gray-silhouette-260nw-1153673752.jpg"
                 alt="profile">
-            <div class="profile-dropdown" fxHide.md  fxHide.xs>
+            <div class="profile-dropdown" fxHide.md fxHide.sm  fxHide.xs>
                 <button mat-button [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxLayoutGap.xs="3px" ><span>Sachin Budni</span><mat-icon color="white">arrow_drop_down</mat-icon></button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let dropdown of profileDropdown">{{dropdown.name}}</button>
                 </mat-menu>
-                <!-- <mat-form-field>
-                    <mat-label>Sachin Budni</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let dropdown of profileDropdown" [value]="dropdown.value">
-                            {{dropdown.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
             </div>
         </div>
 

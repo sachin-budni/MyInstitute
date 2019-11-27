@@ -2,45 +2,45 @@
     <p>Hi Bro</p>
 </div>
 
-<form [formGroup]="overviewForm" >
+<form [formGroup]="overviewForm">
     <div formArrayName="review">
-        <div *ngFor="let item of getReviews.controls; let pointIndex=index" [formGroupName]="pointIndex">
-            <!-- <div *ngIf="selectedValue == pointIndex"> -->
-                <mat-form-field appearance="outline" class="header-form">
-                    <input matInput formControlName="headerName" placeholder="Course Name" />
-                </mat-form-field>
+        <div *ngFor="let item of getReviews.controls; let pointIndex=index" [formGroupName]="pointIndex" class="all-form">
+            <mat-form-field appearance="outline" class="header-form">
+                <input matInput formControlName="review" placeholder="Review" />
+                <mat-error *ngIf="!item.controls['review'].valid && item.controls['review'].touched">
+                    {{ titleAlert }}
+                </mat-error>
+            </mat-form-field>
 
-                <mat-form-field appearance="outline" class="header-form">
-                    <input matInput formControlName="candidateName" placeholder="Course Hours" />
-                </mat-form-field>
+            <mat-form-field class="header-form">
+                <mat-select placeholder="skills" formControlName="skills" multiple>
+                    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!item.controls['skills'].valid && item.controls['skills'].touched">
+                    {{ titleAlert }}
+                </mat-error>
+            </mat-form-field>
 
-                <mat-form-field class="header-form">
-                    <mat-select placeholder="Courses" formControlName="skills" multiple>
-                      <!-- <mat-select-trigger> -->
-                        <!-- {{getJobs.value ? toppings.value[0] : ''}} -->
-                        <!-- <span *ngIf="toppings.value?.length > 1" class="example-additional-selection"> -->
-                          <!-- (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}}) -->
-                        <!-- </span> -->
-                      <!-- </mat-select-trigger> -->
-                      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <mat-form-field class="example-full-width" class="header-form">
+                <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                <mat-error *ngIf="!item.controls['description'].valid && item.controls['description'].touched">
+                    {{ titleAlert }}
+                </mat-error>
+            </mat-form-field>
 
-                <mat-form-field class="example-full-width" class="header-form">
-                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                </mat-form-field>
+            <mat-form-field appearance="outline" class="header-form">
+                <input matInput formControlName="candidateName" placeholder="Candidate Name" />
+                <mat-error *ngIf="!item.controls['candidateName'].valid && item.controls['candidateName'].touched">
+                    {{ titleAlert }}
+                </mat-error>
+            </mat-form-field>
 
-
-                <!-- <mat-form-field appearance="outline" class="header-form">
-                    <input matInput formControlName="description" placeholder="Description" />
-                </mat-form-field> -->
-            <!-- </div> -->
         </div>
     </div>
 </form>
 <button mat-raised-button (click)="onNoClick()">
     Close me
 </button>
-<button mat-raised-button [mat-dialog-close]="overviewForm" cdkFocusInitial>
+<button mat-raised-button [mat-dialog-close]="overviewForm" [disabled]="!overviewForm.valid" cdkFocusInitial>
     Sumbit
 </button>
