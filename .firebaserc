@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "movie-preview-2019"
+  },
+  "targets": {
+    "movie-preview-2019": {
+      "hosting": {
+        "usecareer": [
+          "usecareer"
+        ]
+      }
+    }
+  }
+}

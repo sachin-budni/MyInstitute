@@ -100,6 +100,10 @@ export class InstituteOverviewComponent implements OnInit {
     })
   }
 
+  onSubmit(value){
+    console.log(value)
+  }
+
   openReviewDialog(){
     const dialogRef = this.dialog.open(NewReviewComponent, {
       data: {formGroup1:null}

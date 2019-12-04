@@ -4,8 +4,8 @@
             <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu1="matMenu">
-            <button mat-menu-item>For Candidate</button>
-            <button mat-menu-item>For Institute</button>
+            <button  mat-menu-item routerLink="candidate" routerLinkActive="active-link">For Candidate</button>
+            <button mat-menu-item routerLink="institute" routerLinkActive="active-link">For Institute</button>
         </mat-menu>
         <span fxFlex="20" fxFlex.xs="0">Jobs.in</span>
         <div class="options" fxLayoutGap="30px"   fxHide.xs>
