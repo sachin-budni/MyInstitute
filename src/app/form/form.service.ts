@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,20 +13,19 @@ const httpOptions = {
 @Injectable()
 export class FormService {
 
-  constructor(private http:HttpClient) { }
+  list:AngularFireList<any>;
+  
+  constructor(private fireDb:AngularFireDatabase,private router:Router) {
+    this.list = this.fireDb.list("institutes");
+  }
 
 
   getData(){
-    this.http.get("http://localhost:5000/products").toPromise()
-    .then(data=>{
-      console.log(data)
-    }).catch(err=>console.log(err));
+    return this.list.valueChanges();
   }
 
   postData(data){
-    this.http.post("http://localhost:5000/products",data,httpOptions).toPromise()
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err));
+    return this.list.push(data);
   }
 
 }

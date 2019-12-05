@@ -69,7 +69,9 @@
         </div>
     </div>
     <div fxFlex="5"></div>
-    <div class="overview">
-        <overview [courses]="courses" [jobs]="jobs" [reviews]="reviews"></overview>
+    <div class="overview" *ngIf="allData | async as data">
+        <div *ngIf="data[0] != undefined">
+            <overview [headers]="data[0].header" [courses]="data[0].course" [jobs]="data[0].job" [reviews]="data[0].review"></overview>
+        </div>
     </div>
 </div>

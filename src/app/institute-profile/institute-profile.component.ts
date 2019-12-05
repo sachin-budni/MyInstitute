@@ -19,7 +19,7 @@ export class InstituteProfileComponent implements OnInit {
       let f1 = event.target.files[0];
       let file = new FileReader();
       file.onload =(e)=>{
-        this.images = e.target["result"];
+        this.images = e.target["result"] as string;
       }
       file.readAsDataURL(f1);
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   forgetPassword:FormGroup;
   flag : boolean = true;
   emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  constructor(private fBuilder : FormBuilder,private activeRoute:ActivatedRoute) { }
+  constructor(private fBuilder : FormBuilder,private activeRoute:ActivatedRoute,private authService:AuthService) { }
 
   ngOnInit() {
     this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || '/';
@@ -39,18 +40,16 @@ export class LoginComponent implements OnInit {
     if(mail == 'email'){
       return this.loginFormGroup.get(mail).hasError('required') ? 'Field is required' :
         this.loginFormGroup.get(mail).hasError('pattern') ? 'Not a valid emailaddress' :'';
-          // this.loginFormGroup.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : ''
     }else{
       return this.forgetPassword.get(mail).hasError('required') ? 'Field is required' :
         this.forgetPassword.get(mail).hasError('pattern') ? 'Not a valid emailaddress' :'';
-          // this.loginFormGroup.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : ''    
     }
   }
 
   onSubmit(data){
-    // this.authService.logIn(data).catch(err=>{ 
-    //   alert(err.message);
-    // });
+    this.authService.login(data).then(d=>this.authService.switchToMain()).catch(err=>{ 
+      alert(err.message);
+    });
   }
   GoogleLogin(){
     // this.authService.googleLogin();

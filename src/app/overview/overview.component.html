@@ -1,10 +1,11 @@
 <div>
-    <div class="overview">
+    <div class="overview" *ngFor="let header of headers">
         <div class="header">
-            <p>Overview</p>
+            <p>{{header.headerName}}</p>
         </div>
         <div class="overview-desc">
-            <p>WillntriX is a learning institute organized by well professionalized trainers having rich corporate Training skill consulting experience that helps to endure the learning skills for the students.</p>
+            <p>{{header.description}}</p>
+            <!-- <p>WillntriX is a learning institute organized by well professionalized trainers having rich corporate Training skill consulting experience that helps to endure the learning skills for the students.</p> -->
         </div>
     </div>
     <div class="padding-20"></div>
@@ -54,7 +55,7 @@
         <div class="jobs-cards">
             <div *ngFor="let job of jobs" class="cards">
                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
-                    <p class="haederName">{{job.headerName}}</p>
+                    <p class="haederName">{{job.position}}</p>
                     <p class="subhead">{{job.experience}} year Experience</p>
                     <p class="subhead">{{job.salary}}</p>
                 </div>
@@ -88,7 +89,7 @@
         <div class="jobs-cards">
             <div *ngFor="let review of reviews" class="cards">
                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
-                    <p class="haederName">{{review.headerName}}</p>
+                    <p class="haederName">{{review.review}}</p>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="start center" class="skill" fxLayoutGap="20px">
                     <p>Skills :</p>

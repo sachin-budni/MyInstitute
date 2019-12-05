@@ -121,8 +121,11 @@ export class InstituteOverviewComponent implements OnInit {
 
   submitted(){
     if (this.overviewForm.valid) {
-      console.log(this.overviewForm.value);
-      this.formService.postData(this.overviewForm.value);
+      this.formService.postData(this.overviewForm.value).then(d=>{
+        console.log(d)
+      }).catch(err=>{
+        console.error(err);
+      })
     }else{
       alert("not valid")
     }

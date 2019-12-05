@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MyInstitute';
+  loading:boolean = false;
+  ngOnInit(){
+    setTimeout(() => {
+      this.loading = true;
+    }, 3000);
+  }
 }

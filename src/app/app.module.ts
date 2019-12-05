@@ -18,6 +18,14 @@ import { FormService } from './form/form.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from './core/auth.service';
+
+// firebase modules importing
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +47,12 @@ import { RegisterComponent } from './register/register.component';
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [FormService],
+  providers: [FormService,AuthService],
   entryComponents:[NewCourseComponent,NewjobComponent,NewReviewComponent],
   bootstrap: [AppComponent]
 })
