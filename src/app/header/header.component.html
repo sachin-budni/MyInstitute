@@ -10,30 +10,37 @@
         <span fxFlex="20" fxFlex.xs="0">Jobs.in</span>
         <div class="options" fxLayoutGap="30px"   fxHide.xs>
             <span>Jobs</span>
-            <button mat-button routerLink="candidate" routerLinkActive="active-link">For Candidate</button>
-            <button mat-button routerLink="institute" routerLinkActive="active-link">For Institute</button>
+            
+            <!-- <button mat-button routerLink="candidate" routerLinkActive="active-link">For Candidate</button> -->
+            <button mat-button routerLink="institutes" routerLinkActive="active-link">Institutes</button>
+            <!-- <button mat-button *ngIf="user | async" routerLink="institute" routerLinkActive="active-link">For Institute</button> -->
         </div>
         <span class="example-spacer"></span>
         <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.md="10px" fxLayoutGap.sm="5px" fxLayoutGap.xs="0px">
-            <mat-icon class="notification-icon">notifications</mat-icon>
-            <div fxHide.xs fxHide.sm>
+            <!-- <mat-icon class="notification-icon">notifications</mat-icon> -->
+            
+            <div fxHide.xs fxHide.sm *ngIf="!(user | async)">
                 <button mat-button routerLink="login" routerLinkActive="active-link">Login</button>
                 <button mat-button routerLink="register" routerLinkActive="active-link">Register</button>
             </div>
-            <div>
 
-            </div>
-            <img class="profile-image"
-                src="https://image.shutterstock.com/image-vector/profile-placeholder-image-gray-silhouette-260nw-1153673752.jpg"
-                alt="profile">
-            <div class="profile-dropdown" fxHide.md fxHide.sm  fxHide.xs>
-                <button mat-button [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxLayoutGap.xs="3px" ><span>Sachin Budni</span><mat-icon color="white">arrow_drop_down</mat-icon></button>
+            <div class="profile-dropdown" fxHide.md fxHide.sm  fxHide.xs *ngIf="user | async as $user">
+                <button mat-button [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxLayoutGap.xs="3px" >
+                    <span>{{$user.displayName}}</span>
+                    <mat-icon color="white">arrow_drop_down</mat-icon>
+                </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item *ngFor="let dropdown of profileDropdown">{{dropdown.name}}</button>
+                    <button mat-menu-item *ngFor="let dropdown of profileDropdown" routerLink="{{dropdown.route}}">{{dropdown.name}}</button>
                 </mat-menu>
             </div>
         </div>
 
-        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">settings</mat-icon>
+        <ng-container  *ngIf="user | async">
+            <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="logout()">
+                <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">power_settings_new</mat-icon>
+            </button>
+        </ng-container>
+        
+
     </mat-toolbar-row>
 </mat-toolbar>

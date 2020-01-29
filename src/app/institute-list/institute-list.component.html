@@ -1,0 +1,19 @@
+<!-- {{$instituteDatas | async | json}} -->
+<div class="main">
+    <div class="sub-main" fxLayout="row" fxLayoutGap="10px" *ngFor="let inst of $instituteDatas | async">
+        <mat-card class="cards">
+            <mat-card-header>
+                <img mat-card-avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyaNit_feJlllrvXJ2QIbpF8RfflqSYQPthmY01_NO0mEcpWZkfQ&s">
+                <mat-card-title>{{inst.instituteName}}</mat-card-title>
+                <mat-card-subtitle>{{inst.email}}</mat-card-subtitle>
+                <div fxFlex></div>
+                <button mat-stroked-button class="view-button" routerLink="/institute/{{inst.instituteName}}">View</button>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="content">
+                    <span>{{inst.mobileNo}}</span>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

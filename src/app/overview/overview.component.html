@@ -1,4 +1,5 @@
 <div>
+
     <div class="overview" *ngFor="let header of headers">
         <div class="header">
             <p>{{header.headerName}}</p>
@@ -8,9 +9,12 @@
             <!-- <p>WillntriX is a learning institute organized by well professionalized trainers having rich corporate Training skill consulting experience that helps to endure the learning skills for the students.</p> -->
         </div>
     </div>
+
     <div class="padding-20"></div>
+    
     <!-- Course -->
-    <div class="course">
+
+    <div class="course" *ngIf="courses">
         <div class="header">
             Course
         </div>
@@ -46,9 +50,11 @@
             <button class="butoons size-btn">more ...</button>
         </div>
     </div>
+
     <div class="padding-20"></div>
     <!-- JOBs -->
-    <div class="jobs">
+
+    <div class="jobs" *ngIf="jobs">
         <div class="header">
             Jobs
         </div>
@@ -80,9 +86,12 @@
             <button class="butoons size-btn">more ...</button>
         </div>
     </div>
+
     <div class="padding-20"></div>
+
     <!-- JOBs -->
-    <div class="jobs">
+
+    <div class="jobs" *ngIf="reviews">
         <div class="header">
             Reviews
         </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormService } from '../form/form.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 export class Courses{
@@ -138,7 +139,8 @@ export class ProfileComponent implements OnInit {
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
   allData:Observable<any>;
-  constructor(private fb:FormBuilder,private formService:FormService) { }
+  constructor(private fb:FormBuilder,private formService:FormService,
+    private activatedRoute:ActivatedRoute) { }
 
 
 
@@ -149,11 +151,17 @@ export class ProfileComponent implements OnInit {
       subject:[null,[Validators.required]],
       message:[null],
     })
-    this.allData = this.formService.getData();  
+    this.activatedRoute.params.subscribe(route=>{
+      this.formService.getUser(route.id).subscribe(d=>{
+        if(d && d.length != 0){
+          this.allData = this.formService.getInstitute(d[0]["id"]);
+        }
+      })
+    })
   }
 
   onSubmit(value){
-    console.log(value)
+    this.formService.pushEnquiry(value)
   }
 
 }

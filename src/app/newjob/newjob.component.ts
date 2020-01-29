@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormService } from '../form/form.service';
 
 @Component({
   selector: 'app-newjob',
@@ -14,21 +15,14 @@ export class NewjobComponent implements OnInit {
   selectIndex:number = 0;
   toppingList: string[] = ['Advance Excel', 'VBA', 'SQL', 'Tally'];
   constructor(public dialogRef: MatDialogRef<NewjobComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder) {
+    @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder,private formService:FormService) {
       this.overviewForm = this.fb.group({
         "job":this.fb.array([])
       })
     }
     
   ngOnInit() {
-    this.getJobs.insert(this.selectIndex,this.fb.group({
-      position:["",[Validators.required,Validators.minLength(3)]],
-      experience:["",[Validators.required,Validators.minLength(3)]],
-      salary:["",[Validators.required,Validators.minLength(3)]],
-      skills:["",[Validators.required]],
-      description:['',[Validators.required,Validators.minLength(10)]],
-      location:["",[Validators.required,Validators.minLength(3)]]
-    }))
+    this.getJobs.insert(this.selectIndex,this.formService.getJobForm)
   }
 
   get getJobs(){

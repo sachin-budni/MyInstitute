@@ -15,8 +15,7 @@ import { FormService } from '../form/form.service';
 export class InstituteOverviewComponent implements OnInit {
 
   overviewForm:FormGroup;
-  headerForm:FormArray;
-  courseForm:FormArray;
+
   selectedValue: number = 0;
   constructor(private fb:FormBuilder,public dialog: MatDialog,private formService:FormService) { }
 
@@ -32,7 +31,44 @@ export class InstituteOverviewComponent implements OnInit {
       headerName:["",[Validators.required]],
       description:["",[Validators.required]]
     }))
-    // this.formService.getData();
+    this.formService.getCurrentUserInstitute.subscribe(data=>{
+
+      if(data["header"]){
+        for (let i = 0; i < data["header"].length; i++) {
+          const element = data["header"][i];
+          let headerForm:FormGroup = this.formService.getHeaderForm;
+          headerForm.setValue(element);
+          this.getHeader.insert(i,headerForm);
+        }
+      }
+
+      if(data["course"]){
+        for (let i = 0; i < data["course"].length; i++) {
+          const element = data["course"][i];
+          let courseForm:FormGroup = this.formService.getCourseForm;
+          courseForm.setValue(element);
+          this.getCourses.insert(i,courseForm);
+        }
+      }
+
+      if(data["job"]){
+        for (let i = 0; i < data["job"].length; i++) {
+          const element = data["job"][i];
+          let courseForm:FormGroup = this.formService.getCourseForm;
+          courseForm.setValue(element);
+          this.getCourses.insert(i,courseForm);
+        }
+      }
+
+      if(data["review"]){
+        for (let i = 0; i < data["review"].length; i++) {
+          const element = data["review"][i];
+          let courseForm:FormGroup = this.formService.getCourseForm;
+          courseForm.setValue(element);
+          this.getCourses.insert(i,courseForm);
+        }
+      }
+    });
   }
 
   get getHeader(){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../core/auth.service';
+import { FormService } from '../form/form.service';
 
 @Component({
   selector: 'app-register',
@@ -15,13 +17,15 @@ export class RegisterComponent implements OnInit {
   forgetPassword:FormGroup;
   flag : boolean = true;
   emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  constructor(private fBuilder : FormBuilder,private activeRoute:ActivatedRoute) { }
+  constructor(private fBuilder : FormBuilder,private activeRoute:ActivatedRoute,
+    private authService:AuthService,private formService:FormService,
+    private router:Router) { }
 
   ngOnInit() {
     this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || '/';
     let passwordRegex: RegExp = /((?=.*\d)(?=.*[a-zA-Z]).{8,20})/ 
     this.loginFormGroup = this.fBuilder.group({
-      "userName":[null,[Validators.required,Validators.minLength(3)]],
+      "instituteName":[null,[Validators.required,Validators.minLength(3)]],
       "email":[null,[Validators.required,Validators.pattern(this.emailregex)]],
       "mobileNo":[null,[Validators.required,Validators.minLength(10)]],
       "password":[null,[Validators.required,Validators.pattern(passwordRegex)]]
@@ -50,9 +54,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data){
-    // this.authService.logIn(data).catch(err=>{ 
-    //   alert(err.message);
-    // });
+    this.authService.register(data).then(d=>{
+      data.id = d.user.uid;
+      this.authService.updateUser(data.instituteName);
+      delete data["password"];
+      this.formService.addNewUser(data);
+      this.router.navigate(['candidate'])
+    }).catch(err=>{ 
+      alert(err.message);
+    });
   }
   GoogleLogin(){
     // this.authService.googleLogin();

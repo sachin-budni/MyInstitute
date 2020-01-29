@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormService } from '../form/form.service';
 
 class OverViewForm{
   formGroup1:FormGroup;
@@ -17,7 +18,7 @@ export class NewCourseComponent implements OnInit {
   titleAlert:string = "Field is Required";
   toppingList: string[] = ['Advance Excel', 'VBA', 'SQL', 'Tally'];
   constructor(public dialogRef: MatDialogRef<NewCourseComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder) {
+    @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder,private formService:FormService) {
       
       // this.overviewForm
       this.overviewForm = this.fb.group({
@@ -26,13 +27,7 @@ export class NewCourseComponent implements OnInit {
     }
     
   ngOnInit() {
-    this.getCourse.insert(this.selectIndex,this.fb.group({
-      headerName:["",[Validators.required,Validators.minLength(3)]],
-      hours:["",[Validators.required,Validators.minLength(3)]],
-      skills:["",[Validators.required]],
-      description:['',[Validators.required,Validators.minLength(10)]],
-      location:["",[Validators.required,Validators.minLength(3)]]
-    }))
+    this.getCourse.insert(this.selectIndex,this.formService.getCourseForm);
   }
 
   get getCourse(){

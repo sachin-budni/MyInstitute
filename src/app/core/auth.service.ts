@@ -11,9 +11,28 @@ export class AuthService {
   login(auth:Login){
     return this.auth.auth.signInWithEmailAndPassword(auth.email,auth.password);
   }
-
+  register(data){
+    return this.auth.auth.createUserWithEmailAndPassword(data.email,data.password);
+  }
   switchToMain(){
     this.router.navigate([""]);
+  }
+  updateUser(instituteName){
+    return this.auth.auth.currentUser.updateProfile({
+      displayName:instituteName,
+      photoURL:"assets/Computer.png"
+    })
+  }
+  get getCurrentUser(){
+    return this.auth.auth.currentUser;
+  }
+
+  get getUser(){
+    return this.auth.user;
+  }
+
+  logout(){
+    return this.auth.auth.signOut();
   }
 
 }

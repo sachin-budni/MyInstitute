@@ -34,6 +34,7 @@
 
 .enquiry-form{
     margin: 10px;
+    max-width: 300px;
 }
 
 .header{
@@ -63,4 +64,8 @@
     color: white;
     font-family: "Roboto", Medium;
     border-radius: 10px;
+}
+
+.overview{
+    width: 100%;
 }
